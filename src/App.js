@@ -1,31 +1,28 @@
 import "./App.css";
-
-function handleAddition() {
-  const Input = document.getElementById("todo-input");
-  if(Input.value === "") {
-    console.error("Value daal lund insaan");
-    return;
-  }
-  const item = document.createElement("li");
-  const button = document.createElement("button");
-  button.innerHTML = Input.value;
-  item.appendChild(button);
-  document.getElementById("todo-list").appendChild(item);
-}
+import React, { useState } from "react";
 
 function App() {
+  const handleSubmit = () => {
+    if (inputValue === "Type something to update here") {
+      return console.error("Value change kar bhai");
+    }
+    setTodoList((preValue) => [...preValue, inputValue]);
+  };
+  const [todoList, setTodoList] = useState("");
+  const [inputValue, setInputValue] = useState("Type something to update here");
   return (
-    <div className="min-h-screen bg-sky-200">
+    <div>
       <h1>Basic Setup</h1>
       <div>
-        <input type="text" placeholder="Work to be done" id="todo-input" />
-        <button onClick={handleAddition}>
-          Add
-        </button>
+        <input onChange={(e) => setInputValue(e.target.value)} />
+        <h4 onClick={handleSubmit}>Button</h4>
+        <h4 onClick={() => console.log(todoList)}>Show</h4>
+        <h4 onClick={() => setTodoList("")}>Clear</h4>
       </div>
       <div>
-        <ul id="todo-list">
-        </ul>
+        {inputValue}
+        <hr />
+        {todoList}
       </div>
     </div>
   );
