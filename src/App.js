@@ -2,21 +2,16 @@ import "./App.css";
 import React, { useState } from "react";
 
 function App() {
+  const [todoList, setTodoList] = useState('')
   const handleSubmit = () => {
     if (inputValue === "Type something to update here") {
       return console.error("Value toh add kar bhai");
     }
-    // setTodoList((preValue) => [...preValue, inputValue]);
     setTodoArr((preValue) => [...preValue, inputValue]);
     document.getElementById("task-input").value = ""
-    /*todoList = todoArr.map((task) => 
-      <>
-        <h1>{task}</h1>
-        <hr />
-        <br />
-      </>
-    )*/
+    setTodoList(todoArr.map((task) => <h1>{task}</h1>))
   };
+
   const [todoArr, setTodoArr] = useState([]);
   const [inputValue, setInputValue] = useState("Type something to update here");
   if (inputValue === "") {
@@ -34,7 +29,7 @@ function App() {
       <div>
         {inputValue}
         <hr />
-        {todoArr}
+        {todoList}
       </div>
     </div>
   );
